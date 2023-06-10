@@ -1,3 +1,5 @@
+//Домашнее задание №1
+
 //Задание 1 Создание объектов
 
 //1 способ
@@ -135,3 +137,5 @@ let makeCounter = (x, y) => x + y;
 function reverseStr(str) {
     return Array.from(str).reverse().join('');
 }
+
+
