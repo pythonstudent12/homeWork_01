@@ -1,143 +1,111 @@
-//Домашнее задание №3
+//Домашнее задание №4
 
 //Задание 1
 
-//Алгоритмы сортировок: сортировка пузырьком, сортировка выбором, быстрая сортировка.
+console.log('1');
+
+setTimeout(() => console.log('2'), 1);
+
+let promiseNew = new Promise((resolve) => {
+   console.log('3');
+   resolve();
+});
+
+promiseNew.then(() => console.log('4'));
+
+setTimeout(() => console.log('5'));
+
+console.log('6');
+
+//Ответ: 1,3,6,4,5,2
+
+//Задание 2
+
+let promiseTree = new Promise((resolve, reject) => {
+    resolve("a");
+    
+    console.log("1");
+    
+    setTimeout(() => {
+       console.log("2");
+    }, 0);
+    
+    console.log("3");
+    });
+
+//Ответ: 1,3,2
 
 //Задание 3
 
-//способ 1 
-
-let Person = {name: 'Mike', surname: 'Connor', id: '001',
-sayHello() {
-    console.log('Hello!');
-},
-sayName() {
-    console.log('My name is ' + this.name + ' ' + this.surname)
-}
-}
-
-let Person1 = {
-    name: 'Alex', surname: 'Johnson',  id: '007'
-}
-
-Object.setPrototypeOf(Person1, Person);
-Person1.sayHello();
-Person1.sayName();
-
-Person.logInfo = function () {
-    console.log('My ID is ' + this.id )
-}
-
-Person.logInfo();
-Person1.logInfo();
-
-//способ 2
-
-function Person (name, id) {
-    this.name = name;
-    this.id = id;
-}
-
-Person.prototype.logInfo = function() {
-    console.log('My ID is ' + this.id );
-}
-
-let Person1 = new Person('Bob', '000');
-let Person2 = new Person('Richard', '555');
-Person1.logInfo();
-Person2.logInfo();
-
-//способ 3 
-
-let Person = {name: 'Mike', surname: 'Connor', id: '001',
-sayHello() {
-    console.log('Hello!');
-},
-sayName() {
-    console.log('My name is ' + this.name + ' ' + this.surname)
-}
-}
-
-let Person1 = Object.create({}, {
-    name: {
-        writable: false,
-        enumerable: true,
-        value: 'Michael'
-    },
-    surname: {
-        writable: false,
-        enumerable: true,
-        value: 'Jackson'
-    },
-    id: {
-        writable: false,
-        configurable: true,
-        enumerable: true,
-        value: '009'
-    },
-});
-
-Person1.__proto__ = Person;
-Person1.sayHello();
-Person1.sayName();
-
-Person.logInfo = function () {
-    console.log('My ID is ' + this.id )
-}
-
-Person.logInfo();
-Person1.logInfo();
-
-
-//Задание 4
-
-class PersonThree {
-    constructor(name) {
-        this.name = name;
-    }
-
-    getName() {
-        return this.name
-    }
-
-    setName(str) {
-       this.name = str;
-    }
-}
-
-class Person extends PersonThree {
-    constructor(name, surname) {
-        super(name);
-        this.surname = surname;
-           
-    }
-    getSurname() {
-        return super.getName() + ' ' + this.surname ;
-    }
+let promiseTwo = new Promise((resolve, reject) => {
+    resolve("a");
+ });
  
-}
+ promiseTwo
+ .then((res) => {
+    return res + "b";
+ })
+ .then((res) => {
+    return res + "с";
+ })
+ .finally((res) => {
+    return res + "!!!!!!!";
+ })
+ .catch((res) => {
+    return res + "d";
+ })
+ .then((res) => {
+    console.log(res);
+ });
 
-let Harry = new Person('Harry', 'Harrison');
-console.log(Harry.getSurname());
-Harry.setName('Mike');
-console.log(Harry.getSurname());
+//Ответ: abc Promise {<fulfilled>: undefined}
+
+// Задание 4
+
+function doSmth() {
+    return Promise.resolve("123");
+ }
+ 
+ doSmth()
+ .then(function (a) {
+    console.log("1", a); //
+    return a;
+ })
+ .then(function (b) {
+    console.log("2", b);
+    return Promise.reject("321");
+ })
+ .catch(function (err) {
+    console.log("3", err);
+ })
+ .then(function (c) {
+    console.log("4", c);
+ return c;
+ });
+
+//Ответ: '1 123', '2 123', '3 321', '4 undefined', 'Promise {<fulfilled>: undefined}'
+
+//Задание 5
+
+console.log("1");
+
+setTimeout(function () {
+     console.log("2");
+}, 0);
+
+Promise.resolve().then(() => console.log("3"));
+
+console.log("4");
+
+// Ответ 1,4,3,2
+
+//Задание 6
 
 
-//Бонус 
-
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-total = 13;
-//result = [4, 9]
-
-const firstSum = (arr, total) => {
-      for (let i=0;i<arr.length;i++) {
-        for (let j=0; j<arr.length; j++) {
-            if(arr[i]+arr[j] == total) return [arr[i], arr[j]];
-        }
+let arr =  [10, 12, 15, 21];
+function funC (arr) {
+    for (let i = 0; i < arr.length; i++) {
+        setTimeout(() => console.log(i), 3000);
       }
 }
-
-console.log(firstSum(arr,total));
-
-//сложность алгоритма O(n^2);
+funC(arr);
